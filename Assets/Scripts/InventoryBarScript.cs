@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class InventoryBarScript : MonoBehaviour
 {
     public GameObject[] slots = new GameObject[5];
     public GameObject panfluteToggle;
+    public bool panFluteCheat;
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.SendMessage("wake up", SendMessageOptions.DontRequireReceiver);
+        if (panFluteCheat)
+            EnablePanFlute();
     }
 
 
