@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MidiPlayerTK;
-using UnityEditor.Experimental.GraphView;
 
 public class PipeCanvasScript : MonoBehaviour
 {
     public MidiStreamPlayer midiStreamPlayer;
     private MPTKEvent mptkEvent;
     public GameObject wallRunePuzzle;
+    public GameObject wheelPuzzle;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,10 @@ public class PipeCanvasScript : MonoBehaviour
         {
             wallRunePuzzle.BroadcastMessage("PlayNote", note);
         }
+        else if(GameManager.Instance.GetCurrentCameraIndex() == 22)
+        {
+            wheelPuzzle.BroadcastMessage("PlayNote", note);
+        }
     }
 
     public void StopNote() 
@@ -32,6 +36,10 @@ public class PipeCanvasScript : MonoBehaviour
         if (GameManager.Instance.GetCurrentCameraIndex() == 21) // wall rune puzzle
         {
             wallRunePuzzle.BroadcastMessage("TurnOff");
+        }
+        if (GameManager.Instance.GetCurrentCameraIndex() == 22) 
+        {
+            wheelPuzzle.BroadcastMessage("StopNote");
         }
     }
 
