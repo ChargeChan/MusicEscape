@@ -60,8 +60,9 @@ public class CamManager : MonoBehaviour
             {18,  new CameraNavigation(back: 17, forward: 8, left: 9)},
             {19,  new CameraNavigation(forward: 14, left: 13)},
             {20,  new CameraNavigation(forward: 12, right: 13)},
-            {21,  new CameraNavigation(back: 22)},
-            {22,  new CameraNavigation(forward: 21)}
+            {21,  new CameraNavigation(left: 22, right: 23)},
+            {22,  new CameraNavigation(back: 21)},
+            {23,  new CameraNavigation(back: 21)}
             // Continue defining mappings for each camera...
         };
     }
