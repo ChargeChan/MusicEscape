@@ -27,7 +27,7 @@ public class CamManager : MonoBehaviour
         InitializeNavigationMap();
 
         // Set the first camera as active
-        SetActiveCamera(0);
+        SetActiveCamera(defaultCameraDebug);
         UpdateUI();
 
         // Assign button functionality
