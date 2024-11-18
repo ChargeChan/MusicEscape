@@ -13,19 +13,20 @@ public class WheelPuzzleScript : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void CheckForSolution()
     {
-        
+        bool isCorrect = true;
+        for (int i = 0; i < rings.Length; i++)
+        {
+            if (!(rings[i].gameObject.transform.localRotation.eulerAngles.y <= 0.5f))
+            {
+                isCorrect = false;
+            }
+        }
+        if (isCorrect)
+        {
+            Debug.Log("Correct!");
+        }
     }
-
-    //public void PlayNote(int note)
-    //{
-    //    for (int i = 0; i < rings.Length; i++)
-    //    {
-
-    //    }
-    //}
-
-
 }
