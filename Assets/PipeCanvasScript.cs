@@ -24,7 +24,7 @@ public class PipeCanvasScript : MonoBehaviour
         {
             wallRunePuzzle.BroadcastMessage("PlayNote", note);
         }
-        else if(GameManager.Instance.GetCurrentCameraIndex() == 22)
+        else if(GameManager.Instance.GetCurrentCameraIndex() == 3)
         {
             wheelPuzzle.BroadcastMessage("PlayNote", note);
         }
