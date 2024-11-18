@@ -4048,7 +4048,7 @@ MonoBehaviour:
   forwardArrow: {fileID: 1191098628}
   backArrow: {fileID: 153668598}
   Leave: {fileID: 86618883}
-  defaultCameraDebug: 22
+  defaultCameraDebug: 21
 --- !u!4 &168402762
 Transform:
   m_ObjectHideFlags: 0
