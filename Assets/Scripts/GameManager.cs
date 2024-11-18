@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     [SerializeField] private string[] inventory;
     private int currentCameraIndex = 0;
+    private Collider currentCameraObjectCollider;
 
     private GameManager()
     {
@@ -69,5 +70,24 @@ public class GameManager : MonoBehaviour
     public int GetCurrentCameraIndex()
     {
         return currentCameraIndex;
+    }
+
+    public void SetCurrentCameraObjectCollider(Collider collider)
+    {
+        currentCameraObjectCollider = collider;
+    }
+
+    public Collider GetCurrentCameraObjectCollider()
+    {
+        return currentCameraObjectCollider;
+    }
+
+    public void EnableCurrentCameraObjectCollider()
+    {
+        if (currentCameraObjectCollider != null)
+        {
+            currentCameraObjectCollider.enabled = true;
+            currentCameraObjectCollider = null;
+        }
     }
 }
