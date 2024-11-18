@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class RotationPuzzleManager : MonoBehaviour
 {
-    public RotationPuzzle[] squares; // References to each square
+    public RotationPuzzle[] squares; // References to the 3 rotatable squares
     public Animator puzzleCompleteAnimator; // Animator for the win animation
+    public GameObject fourthPiece; // Reference to the fourth piece
     private bool puzzleComplete = false;
-    private bool hasScrambled = false; // Flag to ensure scrambling happens before checks
+    private bool fourthPiecePlaced = false; // Flag to check if the fourth piece is placed
 
     private void Start()
     {
         ScrambleRotations();
-        hasScrambled = true; // Set flag to true after scrambling
     }
 
     private void Update()
     {
-        if (puzzleComplete || !hasScrambled) return; // Skip checks until scrambling is complete
+        if (puzzleComplete) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -38,7 +38,7 @@ public class RotationPuzzleManager : MonoBehaviour
 
     private void CheckPuzzleCompletion()
     {
-        // Check if all squares are correctly aligned
+        // Check if all rotatable squares are correctly aligned
         foreach (RotationPuzzle square in squares)
         {
             if (!square.IsCorrectlyAligned())
@@ -47,11 +47,15 @@ public class RotationPuzzleManager : MonoBehaviour
             }
         }
 
-        // If all squares are correctly aligned, trigger win condition
-        puzzleComplete = true;
-        puzzleCompleteAnimator.SetTrigger("PuzzleComplete");
-        LockSquares();
- 
+        // Check if the fourth piece is placed
+        if (fourthPiecePlaced)
+        {
+            // Trigger the win condition
+            puzzleComplete = true;
+            puzzleCompleteAnimator.SetTrigger("PuzzleComplete");
+            LockSquares();
+            Debug.Log("Puzzle Complete!!!");
+        }
     }
 
     private void LockSquares()
@@ -59,7 +63,6 @@ public class RotationPuzzleManager : MonoBehaviour
         foreach (RotationPuzzle square in squares)
         {
             square.LockRotation();
-
         }
     }
 
@@ -67,22 +70,16 @@ public class RotationPuzzleManager : MonoBehaviour
     {
         foreach (RotationPuzzle square in squares)
         {
-            // Generate a random number (1, 2, or 3) and multiply by 90 for scrambling (avoid 0 to ensure misalignment)
             int randomAngle = Random.Range(1, 4) * 90;
-            Quaternion scrambledRotation = square.transform.rotation * Quaternion.Euler(randomAngle, 0, 0); // Offset the current rotation
-
-            square.SetScrambledRotation(scrambledRotation); // Apply scrambled rotation safely
+            Quaternion scrambledRotation = square.transform.rotation * Quaternion.Euler(randomAngle, 0, 0);
+            square.SetScrambledRotation(scrambledRotation);
         }
+    }
 
-        // Validate that all squares are scrambled and not initially aligned
-        foreach (RotationPuzzle square in squares)
-        {
-            if (square.IsCorrectlyAligned())
-            {
-                Debug.LogWarning("Square is aligned after scrambling! Rescrambling...");
-                ScrambleRotations();
-                return; // Restart scrambling if alignment is detected
-            }
-        }
+    public void PlaceFourthPiece()
+    {
+        // Mark the fourth piece as placed and check completion
+        fourthPiecePlaced = true;
+        CheckPuzzleCompletion();
     }
 }

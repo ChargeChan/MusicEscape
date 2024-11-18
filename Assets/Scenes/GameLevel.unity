@@ -12196,6 +12196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNeeded: HarpPiece
   harpPiece: {fileID: 446147663}
+  puzzleManager: {fileID: 1912738370}
 --- !u!1 &572613364
 GameObject:
   m_ObjectHideFlags: 0
@@ -20850,7 +20851,7 @@ Transform:
   m_GameObject: {fileID: 951481851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.44, y: -0.7140605, z: -2.967}
+  m_LocalPosition: {x: 5.44, y: -0.7140605, z: -3.049}
   m_LocalScale: {x: 0.32540587, y: 0.3254059, z: 0.3254059}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26773,7 +26774,7 @@ Transform:
   m_GameObject: {fileID: 1502729686}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.0822353, y: -8.854295, z: -3.77}
+  m_LocalPosition: {x: 1.0822353, y: -8.854295, z: -2.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37769,6 +37770,7 @@ MonoBehaviour:
   - {fileID: 1780754850}
   - {fileID: 664063338}
   puzzleCompleteAnimator: {fileID: 1912738374}
+  fourthPiece: {fileID: 446147663}
 --- !u!65 &1912738371
 BoxCollider:
   m_ObjectHideFlags: 0
