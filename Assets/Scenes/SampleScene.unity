@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   note: 72
   upSpeed: 0.005
-  downSpeed: 0.003
+  downSpeed: 0.0015
 --- !u!1 &299437003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1352727698758725801, guid: c3584618c015aeb49b0530ba8291080b, type: 3}
@@ -3341,7 +3341,7 @@ Transform:
   m_GameObject: {fileID: 571656576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.281, y: 0.021, z: 0}
+  m_LocalPosition: {x: 29.281, y: 0.021, z: 1.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8172,7 +8172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -10.916, y: -21.253, z: 4.212}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -5.9, y: 31.700012}
+  m_AnchoredPosition: {x: -5.9, y: -38}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1570970203
@@ -9790,7 +9790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 77
-  upSpeed: 0.006
+  upSpeed: 0.01
   downSpeed: 0.009
 --- !u!1 &1926774709
 GameObject:
