@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MidiPlayerTK;
+using UnityEditor.Experimental.GraphView;
 
 public class PipeCanvasScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PipeCanvasScript : MonoBehaviour
     private MPTKEvent mptkEvent;
     public GameObject wallRunePuzzle;
     public GameObject wheelPuzzle;
+    public GameObject pillarPuzzle;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,10 @@ public class PipeCanvasScript : MonoBehaviour
         {
             wheelPuzzle.BroadcastMessage("PlayNote", note);
         }
+        else if (GameManager.Instance.GetCurrentCameraIndex() == 3)
+        {
+            pillarPuzzle.BroadcastMessage("PlayNote", note);
+        }
     }
 
     public void StopNote() 
@@ -40,6 +46,10 @@ public class PipeCanvasScript : MonoBehaviour
         if (GameManager.Instance.GetCurrentCameraIndex() == 22) 
         {
             wheelPuzzle.BroadcastMessage("StopNote");
+        }
+        if (GameManager.Instance.GetCurrentCameraIndex() == 3)
+        {
+            pillarPuzzle.BroadcastMessage("TurnOff");
         }
     }
 
