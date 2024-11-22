@@ -8,10 +8,12 @@ public class PillarScript : MonoBehaviour
     public int note;
     public float upSpeed;
     public float downSpeed;
+    public float correctHeight;
     private bool goingUp = false;
     private bool goingDown = false;
     private float maxPillarY;
     private float minPillarY;
+    private bool solved = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,25 +23,42 @@ public class PillarScript : MonoBehaviour
 
     private void Update()
     {
-        if (goingUp)
+        if(!solved)
         {
-            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + upSpeed, transform.position.z);
-            if (transform.position.y > maxPillarY)
+            if(transform.position.y > correctHeight - 0.2 && transform.position.y < correctHeight + 0.5)
             {
-                goingUp = false;
-                goingDown = false;
-                gameObject.transform.position = new Vector3(transform.position.x, maxPillarY, transform.position.z);
+                SendMessageUpwards("CorrectHeightOn", note);
+                Debug.Log("Correct " + note);
+            }
+            else
+            {
+                SendMessageUpwards("CorrectHeightOff", note);
+            }
+            if (goingUp)
+            {
+                gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + upSpeed, transform.position.z);
+                if (transform.position.y > maxPillarY)
+                {
+                    goingUp = false;
+                    goingDown = false;
+                    gameObject.transform.position = new Vector3(transform.position.x, maxPillarY, transform.position.z);
+                }
+            }
+            else if (goingDown)
+            {
+                gameObject.transform.position = new Vector3(transform.position.x, transform.position.y - downSpeed, transform.position.z);
+                if (transform.position.y < minPillarY)
+                {
+                    goingDown = false;
+                    gameObject.transform.position = new Vector3(transform.position.x, minPillarY, transform.position.z);
+                }
             }
         }
-        else if (goingDown)
+        else
         {
-            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y - downSpeed, transform.position.z);
-            if(transform.position.y < minPillarY)
-            {
-                goingDown = false;
-                gameObject.transform.position = new Vector3(transform.position.x, minPillarY, transform.position.z);
-            }
+
         }
+        
     }
 
     public void PlayNote(int note)
@@ -71,5 +90,8 @@ public class PillarScript : MonoBehaviour
         maxPillarY = y;
     }
 
-
+    public void Solved()
+    {
+        solved = true;
+    }
 }
