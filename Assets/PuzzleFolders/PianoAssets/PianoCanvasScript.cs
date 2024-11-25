@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MidiPlayerTK;
+using Unity.VisualScripting;
 
 public class PianoCanvasScript : MonoBehaviour
 {
@@ -12,17 +13,27 @@ public class PianoCanvasScript : MonoBehaviour
 
     public MidiStreamPlayer midiStreamPlayer;
     private MPTKEvent mptkEvent;
+    private GameObject music;
+    private Canvas myCanvas;
     
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SetInstrument());
+        music = GameObject.Find("Music");
+        myCanvas = gameObject.GetComponent<Canvas>();
     }
-    
-    // Update is called once per frame
-    void Update()
+
+    public void OpenCanvas()
     {
-        
+        music.SendMessage("Quiet"); // we want the BGM to be quiet for the instrument to play
+        myCanvas.enabled = true;
+    }
+
+    public void CloseCanvas()
+    {
+        music.SendMessage("UnQuiet");
+        myCanvas.enabled = false;
     }
 
     public void PlayNote(int note)

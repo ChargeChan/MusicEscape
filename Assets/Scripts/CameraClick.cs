@@ -10,7 +10,6 @@ public class CameraClick : MonoBehaviour
     private void Start()
     {
         myCollider = GetComponent<Collider>();
-        Debug.Log(myCollider);
     }
 
     void OnMouseDown()
