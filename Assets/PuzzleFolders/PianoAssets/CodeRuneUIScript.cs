@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,17 +8,23 @@ public class CodeRuneUIScript : MonoBehaviour
 {
     [SerializeField] private string rune;
     private Image image;
+    public TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
-        image.enabled = false;
+       // image.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetChord(string chord)
+    {
+        text.text = chord;
     }
 
     public void SetRune(string rune)

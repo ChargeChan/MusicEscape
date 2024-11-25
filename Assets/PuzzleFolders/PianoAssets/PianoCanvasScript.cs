@@ -6,15 +6,20 @@ using Unity.VisualScripting;
 
 public class PianoCanvasScript : MonoBehaviour
 {
-    public GameObject[] slots = new GameObject[5];
-    private int codeCounter = 0;
-    private string codeEntered = "";
-    private string runePassword = "CrystalCrystalCrystalCrystalCrystal";
+    public GameObject[] slots;
+    public GameObject[] chordProgress;
+    private int slotsCounter = 0;
+    private string currentChord = "";
+    [SerializeField] private string totalChords = "";
+    private int noteCounterForSingle = 0;
+    private int chordCounterTotal = 0;
+    
 
     public MidiStreamPlayer midiStreamPlayer;
     private MPTKEvent mptkEvent;
     private GameObject music;
     private Canvas myCanvas;
+    private Dictionary<string, string> chordNameMap;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,10 @@ public class PianoCanvasScript : MonoBehaviour
         StartCoroutine(SetInstrument());
         music = GameObject.Find("Music");
         myCanvas = gameObject.GetComponent<Canvas>();
+        chordNameMap = new Dictionary<string, string>
+        {
+            {"F5G5#C6", "Fm" }
+        };
     }
 
     public void OpenCanvas()
@@ -40,46 +49,68 @@ public class PianoCanvasScript : MonoBehaviour
     {
         mptkEvent = new MPTKEvent() { Value = note };
         midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
+        ChordPlayHandler(note);
     }
+
+    public void ChordPlayHandler(int note)
+    {
+        currentChord += MidiPlayerTK.HelperNoteLabel.LabelFromMidi(note);
+        chordProgress[noteCounterForSingle].SendMessage("TurnOn");
+        noteCounterForSingle++;
+        if (noteCounterForSingle >= 3) // reset all lights
+        {
+            StartCoroutine(ChordPlayed());
+            totalChords += IdentifyChord( currentChord); // identify chord name based on notes
+            currentChord = "";
+            slotsCounter++;
+            
+        }
+    }
+
+    private string IdentifyChord(string chord)
+    {
+        string chordName = "Cm";
+        //identify from dictionary
+        slots[slotsCounter].SendMessage("SetChord", chordName);
+        return chordName;
+    }
+
 
     public void StopNote(){midiStreamPlayer.MPTK_StopEvent(mptkEvent);}
 
-    public void PlayRune(string rune)
-    {
-        if (codeCounter >= slots.Length)
-            return;
-        slots[codeCounter].SendMessage("SetRune", rune);
-        codeEntered += rune;
-        codeCounter++;
-        if(codeCounter == 5)
-        {
-            CheckPassword();
-        }
-    }
-
-    public void ClearRunes()
-    {
-        for(int i = 0; i < slots.Length; i++)
-        {
-            slots[i].SendMessage("SetRune", "");
-        }
-        codeEntered = "";
-        codeCounter = 0;
-    }
 
     public void CheckPassword()
     {
-        if(codeEntered == runePassword)
+        
+    }
+
+    public void Reset()
+    {
+        currentChord = "";
+        slotsCounter = 0;
+        totalChords = "";
+        noteCounterForSingle = 0;
+        chordCounterTotal = 0;
+        for (int i = 0; i < chordProgress.Length; i++)
         {
-            Debug.Log("correct password");
-            StartCoroutine(RightCode());
+            chordProgress[i].SendMessage("TurnOff"); //the lights turn off to show that they can be used again
         }
-        else
+    }
+
+    private IEnumerator ChordPlayed()
+    {
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 0; i < chordProgress.Length; i++)
         {
-            Debug.Log("wrong password");
-            StartCoroutine(WrongCode());
+            chordProgress[i].SendMessage("ColorSetting"); //the lights display other color to show that they've been set
         }
-        //ClearRunes();
+        yield return new WaitForSeconds(2);
+        for (int i = 0; i < chordProgress.Length; i++)
+        {
+            chordProgress[i].SendMessage("TurnOff"); //the lights turn off to show that they can be used again
+        }
+        noteCounterForSingle = 0;
+        
     }
 
     // midiStreamPlayer takes a second to load so a buffer is needed
@@ -95,35 +126,4 @@ public class PianoCanvasScript : MonoBehaviour
         midiStreamPlayer.MPTK_PlayEvent(PatchChange);
     }
 
-    private IEnumerator WrongCode()
-    {
-        yield return new WaitForSeconds(0.2f);
-        //play some incorrect chime
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i].SendMessage("ColorIndicate", "wrong");
-        }
-        yield return new WaitForSeconds(2);
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i].SendMessage("ColorIndicate", "none");
-        }
-        ClearRunes();
-    }
-
-    private IEnumerator RightCode()
-    {
-        yield return new WaitForSeconds(0.2f);
-        //play some correct chime
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i].SendMessage("ColorIndicate", "right");
-        }
-        yield return new WaitForSeconds(2);
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i].SendMessage("ColorIndicate", "none");
-        }
-        ClearRunes();
-    }
 }
