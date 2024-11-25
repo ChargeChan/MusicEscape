@@ -10,10 +10,12 @@ public class CameraClick : MonoBehaviour
     private void Start()
     {
         myCollider = GetComponent<Collider>();
+        Debug.Log(myCollider);
     }
 
     void OnMouseDown()
     {
+        //if (!this.enabled) return;
         // Find CamManager and switch to the target camera
         CamManager camManager = FindObjectOfType<CamManager>();
         if (camManager != null)
