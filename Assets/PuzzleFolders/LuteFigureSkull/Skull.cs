@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Skull : MonoBehaviour
 {
     public delegate void SkullClicked(int skullID);
     public event SkullClicked OnSkullClicked;
 
+    public int note;
     private int skullID; // Unique ID for this skull
 
     public Material glowMaterial; // Optional: Assign a glowing material for effects
@@ -31,13 +33,17 @@ public class Skull : MonoBehaviour
     {
         // Notify the manager that this skull was clicked
         OnSkullClicked?.Invoke(skullID);
+        SendMessageUpwards("PlayNote", note);
 
-        // Optional: Trigger glow effect
+        // Trigger glow effect
         if (skullRenderer != null && glowMaterial != null)
         {
             skullRenderer.material = glowMaterial;
         }
     }
+
+    
+    
 
     public void ResetVisuals()
     {

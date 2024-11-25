@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MidiPlayerTK;
 
 public class SkullPuzzleManager : MonoBehaviour
 {
     
-    public List<GameObject> skulls; // Assign your skull GameObjects in the Inspector
-    public bool puzzleActivated = false;
+    public List<GameObject> skulls;
+    //public bool puzzleActivated = true;
+    private bool puzzleComplete = false;
+    public Animator puzzleCompleteAnimator;
 
-    public List<int> correctOrder = new List<int>(); // Assign the correct order in Inspector (0-based index)
+    public List<int> correctOrder = new List<int>(); 
 
-    private List<int> playerOrder = new List<int>(); // Tracks the player's inputs
+    private List<int> playerOrder = new List<int>(); // player's inputs
+    public MidiStreamPlayer midiStreamPlayer;
+    private MPTKEvent mptkEvent;
 
     void Start()
     {
@@ -31,12 +36,12 @@ public class SkullPuzzleManager : MonoBehaviour
 
     private void HandleSkullClick(int skullID)
     {
-        if (!puzzleActivated)
-        {
-            Debug.Log("The puzzle is not activated yet!");
-            ResetPuzzle();
-            return;
-        }
+        //if (!puzzleActivated)
+        //{
+        //    Debug.Log("The puzzle is not activated yet!");
+        //    ResetPuzzle();
+        //    return;
+        //}
 
         // Add the clicked skull to the player's order
         playerOrder.Add(skullID);
@@ -86,17 +91,42 @@ public class SkullPuzzleManager : MonoBehaviour
         }
     }
 
-    private void PuzzleSolved()
+    private void Update()
     {
-        // Trigger the win state
-        Debug.Log("You solved the puzzle!");
-        // Add win logic here (e.g., unlock a door, spawn an item, etc.)
+        if (puzzleComplete) return;
     }
 
-    public void ActivatePuzzle()
+    private void PuzzleSolved()
     {
-        puzzleActivated = true;
-        Debug.Log("The puzzle has been activated!");
+        Debug.Log("You solved the puzzle!");
+        puzzleComplete = true;
+        puzzleCompleteAnimator.SetTrigger("PuzzleComplete");
+
+    }
+
+    //public void ActivatePuzzle()
+    //{
+    //    puzzleActivated = true;
+    //    Debug.Log("The puzzle has been activated!");
+    //}
+
+    public void PlayNote(int note)
+    {
+        mptkEvent = new MPTKEvent() { Value = note };
+        midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
+    }
+
+    private IEnumerator SetInstrument()
+    {
+        yield return new WaitForSeconds(1);
+        MPTKEvent PatchChange = new MPTKEvent()
+        {
+            Command = MPTKCommand.PatchChange,
+            Value = 19, // pipe organ
+            Channel = 3,
+            Duration = 10
+        }; // Instrument are defined by channel (from 0 to 15). So at any time, only 16 differents instruments can be used simultaneously.
+        midiStreamPlayer.MPTK_PlayEvent(PatchChange);
     }
 
 }
