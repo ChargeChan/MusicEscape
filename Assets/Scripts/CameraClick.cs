@@ -5,6 +5,12 @@ using UnityEngine;
 public class CameraClick : MonoBehaviour
 {
     public int targetCameraIndex; // The index of the camera to switch to when clicked
+    private Collider myCollider;
+
+    private void Start()
+    {
+        myCollider = GetComponent<Collider>();
+    }
 
     void OnMouseDown()
     {
@@ -13,6 +19,8 @@ public class CameraClick : MonoBehaviour
         if (camManager != null)
         {
             camManager.SetActiveCamera(targetCameraIndex);
+            myCollider.enabled = false;
+            GameManager.Instance.SetCurrentCameraObjectCollider(myCollider);
         }
         else
         {

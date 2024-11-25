@@ -30,7 +30,7 @@ public class JigsawClick : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     RaycastHit hit = GetRaycastHit(activeCamera);
-                    Debug.Log("Camera found: " + activeCamera);
+                    //Debug.Log("Camera found: " + activeCamera);
 
                     if (hit.collider != null && hit.collider.CompareTag("Jigsaw"))
                     {

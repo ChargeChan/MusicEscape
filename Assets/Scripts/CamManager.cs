@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CamManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class CamManager : MonoBehaviour
         InitializeNavigationMap();
 
         // Set the first camera as active
-        SetActiveCamera(0);
+        SetActiveCamera(defaultCameraDebug);
         UpdateUI();
 
         // Assign button functionality
@@ -80,6 +81,15 @@ public class CamManager : MonoBehaviour
             {21,  new CameraNavigation(back: 22)},
             {22,  new CameraNavigation(forward: 21)}
             // Continue defining mappings for each camera...
+        };
+        //for testing sample scene
+        if(SceneManager.GetActiveScene().name == "SampleScene")
+        cameraNavigationMap = new Dictionary<int, CameraNavigation>
+        {
+            { 0, new CameraNavigation(left: 2, right:3)},
+            { 1, new CameraNavigation(back: 0)},
+            { 2, new CameraNavigation(right: 0)},
+            { 3, new CameraNavigation(left: 0)},
         };
     }
 
@@ -180,6 +190,8 @@ public class CamManager : MonoBehaviour
         int targetCamera = cameraNavigationMap[currentCameraIndex].back;
         if (targetCamera != -1) SetActiveCamera(targetCamera);
         UpdateUI();
+        //re enable colliders
+        GameManager.Instance.EnableCurrentCameraObjectCollider();
     }
 
     void MoveLeave()
@@ -187,6 +199,7 @@ public class CamManager : MonoBehaviour
         int targetCamera = cameraNavigationMap[currentCameraIndex].leave;
         if (targetCamera != -1) SetActiveCamera(targetCamera);
         UpdateUI();
+        
     }
 
 
