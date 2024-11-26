@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PaperScript : MonoBehaviour
 {
-    public string noteContent; 
-    public Canvas noteCanvas; 
-    public Image noteImage; 
+    public string noteContent;
+    public Canvas noteCanvas;
+    public Image noteImage;
+    private TextMeshProUGUI noteText;
 
     private bool isNoteActive = false;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if (isNoteActive)
+        // Ensure the canvas is disabled at the start
+        if (noteCanvas != null)
         {
-            // Check for clicks outside the note to close it
-            if (Input.GetMouseButtonDown(0))
+            noteCanvas.gameObject.SetActive(false);
+
+            // Find the TMP Text component within the canvas
+            noteText = noteCanvas.GetComponentInChildren<TextMeshProUGUI>();
+            if (noteText == null)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (!noteCanvas.GetComponent<Collider>().Raycast(ray, out hit, Mathf.Infinity))
-                {
-                    CloseNote();
-                }
+                Debug.LogError("TMP TextMeshProUGUI component not found in NoteCanvas!");
             }
+        }
+        else
+        {
+            Debug.LogError("NoteCanvas is not assigned!");
         }
     }
 
@@ -39,11 +43,16 @@ public class PaperScript : MonoBehaviour
 
     public void OpenNote()
     {
-        // Show the note canvas and set the content
-        noteCanvas.gameObject.SetActive(true);
-        noteCanvas.GetComponentInChildren<Text>().text = noteContent;
+        if (noteCanvas != null)
+        {
+            noteCanvas.gameObject.SetActive(true);
 
-        // If there is an image for the note, enable it
+            if (noteText != null)
+            {
+                noteText.text = noteContent;
+            }
+        }
+
         if (noteImage != null)
         {
             noteImage.gameObject.SetActive(true);
@@ -54,14 +63,10 @@ public class PaperScript : MonoBehaviour
 
     public void CloseNote()
     {
-        // Hide the note canvas
-        noteCanvas.gameObject.SetActive(false);
-        isNoteActive = false;
-
-        // Optionally hide the image when the note is closed
-        if (noteImage != null)
+        if (noteCanvas != null)
         {
-            noteImage.gameObject.SetActive(false);
+            noteCanvas.gameObject.SetActive(false);
         }
+        isNoteActive = false;
     }
 }
