@@ -7,9 +7,10 @@ public class SkullPuzzleManager : MonoBehaviour
 {
     
     public List<GameObject> skulls;
-    //public bool puzzleActivated = true;
+    public bool puzzleActivated = false;
     private bool puzzleComplete = false;
     public Animator puzzleCompleteAnimator;
+    public AudioSource audioSource;
 
     public List<int> correctOrder = new List<int>(); 
 
@@ -32,16 +33,18 @@ public class SkullPuzzleManager : MonoBehaviour
             skull.AssignID(i);
             skull.OnSkullClicked += HandleSkullClick; // Subscribe to skull click events
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void HandleSkullClick(int skullID)
     {
-        //if (!puzzleActivated)
-        //{
-        //    Debug.Log("The puzzle is not activated yet!");
-        //    ResetPuzzle();
-        //    return;
-        //}
+        if (!puzzleActivated)
+        {
+            Debug.Log("The puzzle is not activated yet!");
+            ResetPuzzle();
+            return;
+        }
 
         // Add the clicked skull to the player's order
         playerOrder.Add(skullID);
@@ -100,15 +103,16 @@ public class SkullPuzzleManager : MonoBehaviour
     {
         Debug.Log("You solved the puzzle!");
         puzzleComplete = true;
+        audioSource.Play();
         puzzleCompleteAnimator.SetTrigger("PuzzleComplete");
 
     }
 
-    //public void ActivatePuzzle()
-    //{
-    //    puzzleActivated = true;
-    //    Debug.Log("The puzzle has been activated!");
-    //}
+    public void ActivatePuzzle()
+    {
+        puzzleActivated = true;
+        Debug.Log("The puzzle has been activated!");
+    }
 
     public void PlayNote(int note)
     {

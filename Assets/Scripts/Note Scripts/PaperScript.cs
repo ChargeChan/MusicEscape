@@ -9,7 +9,9 @@ public class PaperScript : MonoBehaviour
     public string noteContent;
     public Canvas noteCanvas;
     public Image noteImage;
+    public Sprite noteSprite;
     private TextMeshProUGUI noteText;
+    private SkullPuzzleManager skullPuzzleManager;
 
     private bool isNoteActive = false;
 
@@ -31,6 +33,9 @@ public class PaperScript : MonoBehaviour
         {
             Debug.LogError("NoteCanvas is not assigned!");
         }
+
+        skullPuzzleManager = FindObjectOfType<SkullPuzzleManager>();
+
     }
 
     void OnMouseDown()
@@ -55,10 +60,19 @@ public class PaperScript : MonoBehaviour
 
         if (noteImage != null)
         {
-            noteImage.gameObject.SetActive(true);
+            if (noteSprite != null) // Use the assigned sprite
+            {
+                noteImage.sprite = noteSprite;
+                noteImage.gameObject.SetActive(true); // Show the image if a sprite is assigned
+            }
+            else
+            {
+                noteImage.gameObject.SetActive(false); // Hide the image if no sprite is assigned
+            }
         }
 
         isNoteActive = true;
+        skullPuzzleManager.ActivatePuzzle();
     }
 
     public void CloseNote()
@@ -67,6 +81,13 @@ public class PaperScript : MonoBehaviour
         {
             noteCanvas.gameObject.SetActive(false);
         }
+
+        if (noteImage != null)
+        {
+            noteImage.gameObject.SetActive(false);
+        }
+
         isNoteActive = false;
+        Debug.Log($"Note closed for {gameObject.name}. isNoteActive reset to {isNoteActive}");
     }
 }
