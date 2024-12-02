@@ -9227,15 +9227,15 @@ RectTransform:
   m_GameObject: {fileID: 511691529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 218820581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.29, y: -10.52}
-  m_SizeDelta: {x: 521.595, y: 348.34}
+  m_AnchoredPosition: {x: 85, y: -80}
+  m_SizeDelta: {x: 400, y: 348.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511691531
 MonoBehaviour:
@@ -18148,7 +18148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 67
-  glowMaterial: {fileID: 2100000, guid: 751fc463423adf34784bd046201b4933, type: 2}
 --- !u!64 &1063068762
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18315,31 +18314,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.385
+      value: -2.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.556
+      value: -6.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.678
+      value: 7.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.54451835
+      value: 0.7040155
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.54451835
+      value: 0.066046976
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.45110953
+      value: -0.066046976
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.45110953
+      value: 0.7040155
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18347,7 +18346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01163f0aa49722847b0b128dc236b3b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -20423,7 +20422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 70
-  glowMaterial: {fileID: 2100000, guid: 751fc463423adf34784bd046201b4933, type: 2}
 --- !u!64 &1278762513
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21464,7 +21462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 72
-  glowMaterial: {fileID: 2100000, guid: 751fc463423adf34784bd046201b4933, type: 2}
 --- !u!64 &1382711130
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22350,7 +22347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 65
-  glowMaterial: {fileID: 2100000, guid: 751fc463423adf34784bd046201b4933, type: 2}
 --- !u!64 &1478343939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23289,7 +23285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 68
-  glowMaterial: {fileID: 2100000, guid: 751fc463423adf34784bd046201b4933, type: 2}
 --- !u!64 &1553934803
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26860,7 +26855,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf06de67492525447a120e2ea1b01389, type: 2}
+  - {fileID: 2100000, guid: e828bfef422638644b0d0f36e8926e47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26906,7 +26901,7 @@ MonoBehaviour:
     Each one has a note that they sing. Here is the order they should ring:'
   noteCanvas: {fileID: 1015909953}
   noteImage: {fileID: 511691531}
-  noteSprite: {fileID: 0}
+  noteSprite: {fileID: 21300000, guid: 3dd33f125c1a286458d320cea5b33a1f, type: 3}
 --- !u!1001 &1804986993
 PrefabInstance:
   m_ObjectHideFlags: 0

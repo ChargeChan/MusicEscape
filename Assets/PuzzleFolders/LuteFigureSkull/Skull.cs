@@ -11,7 +11,7 @@ public class Skull : MonoBehaviour
     public int note;
     private int skullID; // Unique ID for this skull
 
-    public Material glowMaterial; // Optional: Assign a glowing material for effects
+    /*public Material glowMaterial;*/ // Optional: Assign a glowing material for effects
     private Material originalMaterial;
     private Renderer skullRenderer;
 
@@ -36,10 +36,10 @@ public class Skull : MonoBehaviour
         SendMessageUpwards("PlayNote", note);
 
         // Trigger glow effect
-        if (skullRenderer != null && glowMaterial != null)
-        {
-            skullRenderer.material = glowMaterial;
-        }
+        //if (skullRenderer != null && glowMaterial != null)
+        //{
+        //    skullRenderer.material = glowMaterial;
+        //}
     }
 
     
