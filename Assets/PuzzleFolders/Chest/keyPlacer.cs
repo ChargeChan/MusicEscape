@@ -6,15 +6,16 @@ using UnityEngine;
 public class keyPlacer : NeedItemScript
 {
 
-    public GameObject key;
+    //public GameObject key;
+    public GameObject chestBlocker;
     public Animator chestOpenAnimator;
 
     void Start()
     {
-        if (key != null)
-        {
-            key.SetActive(false); // Ensure the key is hidden initially
-        }
+        //if (key != null)
+        //{
+        //    key.SetActive(false); // Ensure the key is hidden initially
+        //}
 
         if (chestOpenAnimator == null)
         {
@@ -24,14 +25,14 @@ public class keyPlacer : NeedItemScript
 
     public override void Open()
     {
-        if (key != null)
-        {
-            key.gameObject.SetActive(true);
-            Debug.Log("Key activated.");
-        }
+        //if (key != null)
+        //{
+        //    key.gameObject.SetActive(true);
+        //    Debug.Log("Key activated.");
+        //}
 
-        SendMessageUpwards(key.name + "Done");
-        Debug.Log(key.name + "Done");
+        //SendMessageUpwards(key.name + "Done");
+        //Debug.Log(key.name + "Done");
 
         if (chestOpenAnimator != null)
         {
@@ -42,5 +43,6 @@ public class keyPlacer : NeedItemScript
         {
             Debug.LogError("chestOpenAnimator is null!");
         }
+        chestBlocker.SetActive(false);
     }
 }
