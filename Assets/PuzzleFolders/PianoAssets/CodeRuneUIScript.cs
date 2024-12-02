@@ -27,6 +27,12 @@ public class CodeRuneUIScript : MonoBehaviour
         text.text = chord;
     }
 
+    public string GetChord()
+    {
+        return text.text;
+    }
+
+
     public void SetRune(string rune)
     {
         this.rune = rune;

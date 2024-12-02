@@ -22,7 +22,6 @@ public class ChordLightScript : MonoBehaviour
     {
         //myRenderer.material.color = Color.green;
         myImage.color = Color.green;
-        Debug.Log("turnon");
     }
 
     public void TurnOff()

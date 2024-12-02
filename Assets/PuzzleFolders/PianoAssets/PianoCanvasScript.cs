@@ -13,6 +13,7 @@ public class PianoCanvasScript : MonoBehaviour
     [SerializeField] private string totalChords = "";
     private int noteCounterForSingle = 0;
     private int chordCounterTotal = 0;
+    private bool keysLocked = false;
     
 
     public MidiStreamPlayer midiStreamPlayer;
@@ -20,17 +21,26 @@ public class PianoCanvasScript : MonoBehaviour
     private GameObject music;
     private Canvas myCanvas;
     private Dictionary<string, string> chordNameMap;
-    
+    private string correctChords;
+    private MPTKEvent[] chordEvents;
+    public long chordPlaybackDuration;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SetInstrument());
         music = GameObject.Find("Music");
         myCanvas = gameObject.GetComponent<Canvas>();
+        chordEvents = new MPTKEvent[3];
         chordNameMap = new Dictionary<string, string>
         {
-            {"F5G5#C6", "Fm" }
+            {"F5G5#C6", "Fm" },
+            {"C5E5G5", "Cm" },
+            {"G5#C6#E6",  "Dbm"},
+            {"F5#A5#D6#",  "Ebm"},
+            {"G5#B5D6#",  "Abm"},
         };
+        correctChords = "FmDbmAbmEbm";
     }
 
     public void OpenCanvas()
@@ -47,30 +57,48 @@ public class PianoCanvasScript : MonoBehaviour
 
     public void PlayNote(int note)
     {
+        
         mptkEvent = new MPTKEvent() { Value = note };
         midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
+        if (keysLocked) return;
         ChordPlayHandler(note);
     }
 
     public void ChordPlayHandler(int note)
     {
         currentChord += MidiPlayerTK.HelperNoteLabel.LabelFromMidi(note);
+        chordEvents[noteCounterForSingle] = new MPTKEvent() { Value = note, Velocity = 50 };
         chordProgress[noteCounterForSingle].SendMessage("TurnOn");
         noteCounterForSingle++;
         if (noteCounterForSingle >= 3) // reset all lights
         {
             StartCoroutine(ChordPlayed());
             totalChords += IdentifyChord( currentChord); // identify chord name based on notes
+            Debug.Log(currentChord);
             currentChord = "";
             slotsCounter++;
             
+        }
+        if(chordCounterTotal == slots.Length)
+        {
+            CheckPassword();
         }
     }
 
     private string IdentifyChord(string chord)
     {
-        string chordName = "Cm";
+        chordCounterTotal++;
+        string chordName = "";
         //identify from dictionary
+        if (chordNameMap.ContainsKey(chord))
+        {
+            chordName = chordNameMap[chord];
+        }
+        else
+        {
+            chordName = "NA";
+        }
+            
         slots[slotsCounter].SendMessage("SetChord", chordName);
         return chordName;
     }
@@ -81,7 +109,17 @@ public class PianoCanvasScript : MonoBehaviour
 
     public void CheckPassword()
     {
-        
+        string password = totalChords;
+        if(password == correctChords)
+        {
+            //play correct chords
+            Debug.Log("correct");
+        }
+        else
+        {
+            //show password is wrong
+            Reset();
+        }
     }
 
     public void Reset()
@@ -95,22 +133,39 @@ public class PianoCanvasScript : MonoBehaviour
         {
             chordProgress[i].SendMessage("TurnOff"); //the lights turn off to show that they can be used again
         }
+        for(int i = 0;i<slots.Length;i++)
+        {
+            slots[i].SendMessage("SetChord", "");
+        }
     }
 
     private IEnumerator ChordPlayed()
     {
+        keysLocked = true;
+
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < chordProgress.Length; i++)
         {
             chordProgress[i].SendMessage("ColorSetting"); //the lights display other color to show that they've been set
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.2f);
+        for (int i=0; i<chordEvents.Length; i++)
+        {
+            // play all notes in chord
+            midiStreamPlayer.MPTK_PlayEvent(chordEvents[i]); 
+        }
+        yield return new WaitForSeconds(1.5f);
         for (int i = 0; i < chordProgress.Length; i++)
         {
             chordProgress[i].SendMessage("TurnOff"); //the lights turn off to show that they can be used again
         }
+        for (int i = 0; i < chordEvents.Length; i++)
+        {
+            // stop all notes in chord
+            midiStreamPlayer.MPTK_StopEvent(chordEvents[i]);
+        }
         noteCounterForSingle = 0;
-        
+        keysLocked = false;
     }
 
     // midiStreamPlayer takes a second to load so a buffer is needed
