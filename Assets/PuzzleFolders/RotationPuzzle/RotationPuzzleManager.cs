@@ -10,9 +10,12 @@ public class RotationPuzzleManager : MonoBehaviour
     private bool puzzleComplete = false;
     private bool fourthPiecePlaced = false; // Flag to check if the fourth piece is placed
 
+    public AudioSource audioSource;
+
     private void Start()
     {
         ScrambleRotations();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -55,6 +58,7 @@ public class RotationPuzzleManager : MonoBehaviour
             puzzleCompleteAnimator.SetTrigger("PuzzleComplete");
             LockSquares();
             Debug.Log("Puzzle Complete!!!");
+            audioSource.Play();
         }
     }
 

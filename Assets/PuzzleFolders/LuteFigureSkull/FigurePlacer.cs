@@ -6,6 +6,7 @@ public class FigurePlacer : NeedItemScript
 {
     public GameObject lute;
     public Animator doorOpenAnimator;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class FigurePlacer : NeedItemScript
         {
             Debug.LogError("Animator not assigned to FigurePlacer!");
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Open()
@@ -27,6 +29,7 @@ public class FigurePlacer : NeedItemScript
         {
             doorOpenAnimator.SetTrigger("DoorOpen");
             Debug.Log("Animation triggered.");
+            audioSource.Play();
         }
         else
         {
