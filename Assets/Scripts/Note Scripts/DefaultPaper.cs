@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PaperScript : MonoBehaviour
+
+public class DefaultPaper : MonoBehaviour
 {
     public string noteContent;
     public Canvas noteCanvas;
     public Image noteImage;
     public Sprite noteSprite;
     private TextMeshProUGUI noteText;
-    private SkullPuzzleManager skullPuzzleManager;
-
+    
     public Button exitNote;
 
     private bool isNoteActive = false;
@@ -36,7 +36,6 @@ public class PaperScript : MonoBehaviour
             Debug.LogError("NoteCanvas is not assigned!");
         }
 
-        skullPuzzleManager = FindObjectOfType<SkullPuzzleManager>();
         exitNote.onClick.AddListener(CloseNote);
     }
 
@@ -74,7 +73,7 @@ public class PaperScript : MonoBehaviour
         }
 
         isNoteActive = true;
-        skullPuzzleManager.ActivatePuzzle();
+
     }
 
     public void CloseNote()
