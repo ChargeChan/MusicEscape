@@ -15,6 +15,7 @@ public class PillarLightScript : MonoBehaviour
     {
         myRenderer = GetComponent<Renderer>();
         myRenderer.material.color = color * -15f;
+        
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class PillarLightScript : MonoBehaviour
             intensity = intensity - 0.005f;
             if(intensity < -15f)
             {
-                Debug.Log(intensity);
+                
                 isOn = false;
             }
                 

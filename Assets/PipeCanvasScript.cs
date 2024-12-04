@@ -11,10 +11,25 @@ public class PipeCanvasScript : MonoBehaviour
     public GameObject wallRunePuzzle;
     public GameObject wheelPuzzle;
     public GameObject pillarPuzzle;
+    public GameObject music;
+    private Canvas myCanvas;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SetInstrument());
+        myCanvas = GetComponent<Canvas>();
+    }
+
+    public void OpenCanvas()
+    {
+        music.SendMessage("Quiet"); // we want the BGM to be quiet for the instrument to play
+        myCanvas.enabled = true;
+    }
+
+    public void CloseCanvas()
+    {
+        music.SendMessage("UnQuiet");
+        myCanvas.enabled = false;
     }
 
 
@@ -24,15 +39,16 @@ public class PipeCanvasScript : MonoBehaviour
         midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
         if(GameManager.Instance.GetCurrentCameraIndex() == 21) // wall rune puzzle
         {
-            wallRunePuzzle.BroadcastMessage("PlayNote", note);
+            //wallRunePuzzle.BroadcastMessage("PlayNote", note);
+            pillarPuzzle.BroadcastMessage("PlayNote", note);
         }
         else if(GameManager.Instance.GetCurrentCameraIndex() == 22)
         {
             wheelPuzzle.BroadcastMessage("PlayNote", note);
         }
-        else if (GameManager.Instance.GetCurrentCameraIndex() == 3)
+        else if (GameManager.Instance.GetCurrentCameraIndex() == 21)
         {
-            pillarPuzzle.BroadcastMessage("PlayNote", note);
+            //pillarPuzzle.BroadcastMessage("PlayNote", note);
         }
     }
 
@@ -41,15 +57,16 @@ public class PipeCanvasScript : MonoBehaviour
         midiStreamPlayer.MPTK_StopEvent(mptkEvent);
         if (GameManager.Instance.GetCurrentCameraIndex() == 21) // wall rune puzzle
         {
-            wallRunePuzzle.BroadcastMessage("TurnOff");
+            // wallRunePuzzle.BroadcastMessage("TurnOff");
+            pillarPuzzle.BroadcastMessage("TurnOff");
         }
         if (GameManager.Instance.GetCurrentCameraIndex() == 22) 
         {
             wheelPuzzle.BroadcastMessage("StopNote");
         }
-        if (GameManager.Instance.GetCurrentCameraIndex() == 3)
+        if (GameManager.Instance.GetCurrentCameraIndex() == 21)
         {
-            pillarPuzzle.BroadcastMessage("TurnOff");
+            
         }
     }
 
