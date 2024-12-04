@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PianoButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public int note;
-    public string rune;
+    //public string rune;
     
     
     // Start is called before the first frame update
@@ -20,10 +20,7 @@ public class PianoButtonScript : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public void OnPointerDown(PointerEventData eventData)
     {
         SendMessageUpwards("PlayNote", note);
-        if (rune != "")
-        {
-            SendMessageUpwards("PlayRune", rune);
-        }
+        
     }
     // mouse up
     public void OnPointerUp(PointerEventData eventData)

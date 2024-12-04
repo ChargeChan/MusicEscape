@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string[] inventory;
     private int currentCameraIndex = 0;
     private Collider currentCameraObjectCollider;
-
     private GameManager()
     {
         inventory = new string[5];
@@ -34,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         inventoryBar = GameObject.Find("InventoryBar");
+        
     }
 
 
@@ -44,7 +44,12 @@ public class GameManager : MonoBehaviour
             inventoryBar.SendMessage("EnablePanFlute");
             return;
         }
-        for(int i=0; i<inventory.Length; i++)
+        else if(item == "OrganKey")
+        {
+            if( CombineOrganKeys() )
+                return;
+        }
+        for (int i=0; i<inventory.Length; i++)
         {
             if(inventory[i] == null)
             {
@@ -89,5 +94,25 @@ public class GameManager : MonoBehaviour
             currentCameraObjectCollider.enabled = true;
             currentCameraObjectCollider = null;
         }
+    }
+
+    public bool CombineOrganKeys()
+    {
+        for(int i=0;i<inventory.Length;i++)
+        {
+            if (inventory[i] == "OrganKey")
+            {
+                inventory[i] = "2OrganKeys";
+                inventoryBar.SendMessage("SetInventory", inventory);
+                return true;
+            }
+            else if (inventory[i] == "2OrganKeys")
+            {
+                inventory[i] = "3OrganKeys";
+                inventoryBar.SendMessage("SetInventory", inventory);
+                return true;
+            }
+        }
+        return false;
     }
 }
