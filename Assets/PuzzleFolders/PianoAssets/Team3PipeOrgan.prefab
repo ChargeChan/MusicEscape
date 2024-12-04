@@ -4179,6 +4179,7 @@ GameObject:
   - component: {fileID: 3880703338708162567}
   - component: {fileID: 7932595449611201015}
   - component: {fileID: 1007470196659629590}
+  - component: {fileID: 3731658562360044020}
   m_Layer: 0
   m_Name: Team3PipeOrgan
   m_TagString: Untagged
@@ -4244,6 +4245,27 @@ MonoBehaviour:
   itemNeeded: 3OrganKeys
   hiddenKeys: {fileID: 438294840240474353}
   debugCheat: 1
+--- !u!95 &3731658562360044020
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7243056683956970840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fde0abefe9c7602478a7c949767c72ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7284334091259726503
 GameObject:
   m_ObjectHideFlags: 0
