@@ -68,7 +68,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97204819798947039}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   - {fileID: 662838779000331253}
   totalChords: 
   midiStreamPlayer: {fileID: 0}
+  midiFilePlayer: {fileID: 0}
+  chordPlaybackDuration: 0
 --- !u!1 &359800287802006562
 GameObject:
   m_ObjectHideFlags: 0
