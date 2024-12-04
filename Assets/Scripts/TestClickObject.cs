@@ -23,8 +23,14 @@ public class TestClickObject : MonoBehaviour
     void OnMouseDown()
     {
         GameManager.Instance.AddItemToIneventory(myName);
-        pickupSound.Play();
-        Destroy(gameObject);
+
+        if (pickupSound != null)
+        {
+            pickupSound.Play();
+        }
+
+        Destroy(gameObject, pickupSound.clip.length);
+        
         
     }
 
