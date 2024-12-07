@@ -14,6 +14,7 @@ public class PaperScript : MonoBehaviour
     private SkullPuzzleManager skullPuzzleManager;
 
     public Button exitNote;
+    public AudioSource audioFX;
 
     private bool isNoteActive = false;
 
@@ -38,12 +39,14 @@ public class PaperScript : MonoBehaviour
 
         skullPuzzleManager = FindObjectOfType<SkullPuzzleManager>();
         exitNote.onClick.AddListener(CloseNote);
+        audioFX = GetComponent<AudioSource>();
     }
 
     void OnMouseDown()
     {
         if (!isNoteActive)
         {
+            audioFX.Play();
             OpenNote();
         }
     }
