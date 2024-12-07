@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuillPlacerScript : NeedItemScript
+public class SoundPlayer : MonoBehaviour
 {
-    public GameObject quill;
     public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
@@ -12,12 +11,14 @@ public class QuillPlacerScript : NeedItemScript
         audioSource = GetComponent<AudioSource>();
     }
 
-    public override void Open()
+    // Update is called once per frame
+    void Update()
     {
         
-        quill.gameObject.SetActive(true);
+    }
+
+    public void playSound()
+    {
         audioSource.Play();
-        SendMessageUpwards(quill.name + "Done");
-        Debug.Log(quill.name + "Done");
     }
 }

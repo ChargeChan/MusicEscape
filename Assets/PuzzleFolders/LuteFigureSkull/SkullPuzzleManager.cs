@@ -35,6 +35,7 @@ public class SkullPuzzleManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
+        StartCoroutine(SetInstrument());
     }
 
     private void HandleSkullClick(int skullID)
@@ -116,7 +117,13 @@ public class SkullPuzzleManager : MonoBehaviour
 
     public void PlayNote(int note)
     {
-        mptkEvent = new MPTKEvent() { Value = note };
+        mptkEvent = new MPTKEvent()
+        {
+            Command = MPTKCommand.NoteOn, // This starts the note
+            Value = note,                 // The note pitch (e.g., 60 for middle C)
+            Channel = 3,                  // Use the same channel as the PatchChange
+            Duration = 100                // Note duration in milliseconds
+        };
         midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
     }
 
@@ -126,9 +133,9 @@ public class SkullPuzzleManager : MonoBehaviour
         MPTKEvent PatchChange = new MPTKEvent()
         {
             Command = MPTKCommand.PatchChange,
-            Value = 19, // pipe organ
+            Value = 19, // pipe organ 19
             Channel = 3,
-            Duration = 10
+            Duration = 100 
         }; // Instrument are defined by channel (from 0 to 15). So at any time, only 16 differents instruments can be used simultaneously.
         midiStreamPlayer.MPTK_PlayEvent(PatchChange);
     }

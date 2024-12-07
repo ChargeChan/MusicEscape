@@ -6,12 +6,11 @@ public class TestClickObject : MonoBehaviour
 {
     public string myName;
     private Renderer myRenderer;
-    public AudioSource pickupSound;
+   public SoundPlayer pickupSound;
     // Start is called before the first frame update
     void Start()
     {
         myRenderer = GetComponent<Renderer>();
-        pickupSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,15 +22,10 @@ public class TestClickObject : MonoBehaviour
     void OnMouseDown()
     {
         GameManager.Instance.AddItemToIneventory(myName);
-
-        if (pickupSound != null)
-        {
-            pickupSound.Play();
-        }
-
-        Destroy(gameObject, pickupSound.clip.length);
+        pickupSound.playSound();
+        Destroy(gameObject);
         
-        
+
     }
 
     
