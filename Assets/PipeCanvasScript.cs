@@ -11,13 +11,14 @@ public class PipeCanvasScript : MonoBehaviour
     public GameObject wallRunePuzzle;
     public GameObject wheelPuzzle;
     public GameObject pillarPuzzle;
-    public GameObject music;
+    private GameObject music;
     private Canvas myCanvas;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SetInstrument());
         myCanvas = GetComponent<Canvas>();
+        music = GameObject.Find("Music");
     }
 
     public void OpenCanvas()
