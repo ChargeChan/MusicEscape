@@ -20,6 +20,8 @@ public class ArrangeCanvasScript : MonoBehaviour
 
     public MidiStreamPlayer midiStreamPlayer;
     private MPTKEvent mptkEvent;
+
+    public GameObject itemToEnable;
     // Start is called before the first frame update
     void Start()
     {
@@ -197,5 +199,7 @@ public class ArrangeCanvasScript : MonoBehaviour
             midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
             yield return new WaitForSeconds(0.05f);
         }
+        yield return new WaitForSeconds(0.8f);
+        itemToEnable.SetActive(true);
     }
 }
