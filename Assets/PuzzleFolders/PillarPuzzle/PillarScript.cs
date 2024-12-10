@@ -28,7 +28,7 @@ public class PillarScript : MonoBehaviour
             if(transform.position.y > correctHeight - 0.2 && transform.position.y < correctHeight + 0.5)
             {
                 SendMessageUpwards("CorrectHeightOn", note);
-                Debug.Log("Chorrect " + note);
+                
             }
             else
             {
@@ -52,7 +52,7 @@ public class PillarScript : MonoBehaviour
                     goingDown = false;
                     gameObject.transform.position = new Vector3(transform.position.x, minPillarY, transform.position.z);
                 }
-                Debug.Log(transform.position.y);
+                
             }
         }
         else
