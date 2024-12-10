@@ -719,7 +719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 73
-  rune: 
 --- !u!114 &131225789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2364,7 +2363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 72
-  rune: 
 --- !u!114 &397393250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2877,7 +2875,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 77
-  rune: 
 --- !u!114 &457938327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3302,6 +3299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Key
+  pickupSound: {fileID: 0}
 --- !u!223 &517265211 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7998285914437392836, guid: 93834f173af4ecd4bbea95eddf1c1732, type: 3}
@@ -3363,7 +3361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 65
-  rune: 
 --- !u!114 &579770308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4890,7 +4887,6 @@ MonoBehaviour:
   wallRunePuzzle: {fileID: 0}
   wheelPuzzle: {fileID: 0}
   pillarPuzzle: {fileID: 571656576}
-  music: {fileID: 0}
 --- !u!114 &819479916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6232,6 +6228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Crystal
+  pickupSound: {fileID: 0}
 --- !u!1001 &1265573994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7517,6 +7514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Crystal
+  pickupSound: {fileID: 0}
 --- !u!1001 &1440299932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8207,7 +8205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   note: 70
-  rune: 
 --- !u!114 &1705920984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9100,6 +9097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Crystal
+  pickupSound: {fileID: 0}
 --- !u!43 &1873072145
 Mesh:
   m_ObjectHideFlags: 0
@@ -9945,6 +9943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Crystal
+  pickupSound: {fileID: 0}
 --- !u!1001 &2012959700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10159,6 +10158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Crystal
+  pickupSound: {fileID: 0}
 --- !u!43 &2065577256
 Mesh:
   m_ObjectHideFlags: 0
@@ -10879,10 +10879,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PianoCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5452001803747767288, guid: ca84f83305c0ac1459108b69fce56ef9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6040490721286656510, guid: ca84f83305c0ac1459108b69fce56ef9, type: 3}
       propertyPath: midiStreamPlayer
       value: 
       objectReference: {fileID: 1797006920}
+    - target: {fileID: 9193838000015596938, guid: ca84f83305c0ac1459108b69fce56ef9, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11015,7 +11023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1528982071168427667, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.021
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1528982071168427667, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11061,6 +11069,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 199668869}
+    - target: {fileID: 4874576826106477446, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5880794824170474111, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
       propertyPath: m_Name
       value: PillarPuzzle
@@ -11071,7 +11083,7 @@ PrefabInstance:
       objectReference: {fileID: 1878972587}
     - target: {fileID: 8514403884405821188, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
       propertyPath: m_VersionIndex
-      value: 20
+      value: 89
       objectReference: {fileID: 0}
     - target: {fileID: 8580981808264601437, guid: d3ffc17fa1d9bc2498a69941f96ab0e4, type: 3}
       propertyPath: m_Mesh

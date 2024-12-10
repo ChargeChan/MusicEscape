@@ -9,7 +9,7 @@ public class BoneScript : MonoBehaviour, IPointerDownHandler
 {
     private RawImage rawImage;
     private bool selected;
-    public bool shouldBeSelected;
+    public bool shouldBeClicked;
     public Color selectedColor;
 
     // Start is called before the first frame update
@@ -34,6 +34,6 @@ public class BoneScript : MonoBehaviour, IPointerDownHandler
 
     public void SendBoneStatus()
     {
-        SendMessageUpwards("GetBoneStatus", selected == shouldBeSelected);
+        SendMessageUpwards("GetBoneStatus", selected == shouldBeClicked);
     }
 }

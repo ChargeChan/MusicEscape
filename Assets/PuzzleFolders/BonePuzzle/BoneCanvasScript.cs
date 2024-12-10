@@ -6,10 +6,13 @@ public class BoneCanvasScript : MonoBehaviour
 {
     public GameObject[] bones;
     [SerializeField] private bool allCorrect;
+    public GameObject itemToEnable;
+    private Canvas myCanvas;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myCanvas = gameObject.GetComponent<Canvas>();   
+        Debug.Log(myCanvas.name);
     }
 
     public void CheckBones()
@@ -20,6 +23,10 @@ public class BoneCanvasScript : MonoBehaviour
             bones[i].SendMessage("SendBoneStatus");
         }
         Debug.Log(allCorrect);
+        if(allCorrect)
+        {
+            Solved();
+        }
     }
 
     public void GetBoneStatus(bool isCorrect)
@@ -33,5 +40,7 @@ public class BoneCanvasScript : MonoBehaviour
     public void Solved()
     {
         //do whatever for when the pzzle is done
+        myCanvas.enabled = false;
+        itemToEnable.gameObject.SetActive(true);
     }
 }

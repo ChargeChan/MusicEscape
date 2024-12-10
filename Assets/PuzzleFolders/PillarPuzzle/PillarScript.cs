@@ -28,6 +28,7 @@ public class PillarScript : MonoBehaviour
             if(transform.position.y > correctHeight - 0.2 && transform.position.y < correctHeight + 0.5)
             {
                 SendMessageUpwards("CorrectHeightOn", note);
+                
             }
             else
             {
@@ -51,6 +52,7 @@ public class PillarScript : MonoBehaviour
                     goingDown = false;
                     gameObject.transform.position = new Vector3(transform.position.x, minPillarY, transform.position.z);
                 }
+                
             }
         }
         else
@@ -82,6 +84,7 @@ public class PillarScript : MonoBehaviour
     public void SetMinPillarY(float y)
     {
         minPillarY = y;
+        gameObject.transform.position = new Vector3(transform.position.x, minPillarY, transform.position.z);
     }
 
     public void SetMaxPillarY(float y)
