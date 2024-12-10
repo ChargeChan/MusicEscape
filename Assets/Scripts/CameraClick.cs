@@ -14,6 +14,7 @@ public class CameraClick : MonoBehaviour
 
     void OnMouseDown()
     {
+        //if (!this.enabled) return;
         // Find CamManager and switch to the target camera
         CamManager camManager = FindObjectOfType<CamManager>();
         if (camManager != null)

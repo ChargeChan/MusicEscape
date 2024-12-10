@@ -9,6 +9,7 @@ public class PianoPhysicalScript : MonoBehaviour
     
     private void OnMouseDown()
     {
-        pianoOverlay.enabled = true;
+        if (!this.enabled) return;
+        pianoOverlay.gameObject.SendMessage("OpenCanvas");
     }
 }

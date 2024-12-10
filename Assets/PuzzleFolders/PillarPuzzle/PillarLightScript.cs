@@ -7,26 +7,36 @@ public class PillarLightScript : MonoBehaviour
     private Renderer myRenderer;
     public int note;
 
-    private float intensity = -15f;
-    private bool isOn;
-    public Color color;
+    private float intensity = 0;
+    private bool isOn = true;
+    public Color myColor;
     // Start is called before the first frame update
     void Start()
     {
         myRenderer = GetComponent<Renderer>();
-        myRenderer.material.color = color * -15f;
+        myRenderer.material.SetColor("myColor", myColor);
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isOn)
         {
-            myRenderer.material.color = color * intensity;
-            intensity = intensity - 0.005f;
-            if(intensity < -15f)
+            //myRenderer.material.color = color * intensity;
+            //Color tempCol = myColor;
+            //tempCol.a = intensity;
+            //myRenderer.material.SetColor("test_name", tempCol);
+            
+            intensity = intensity - 0.01f;
+            myColor.a = intensity;
+            myRenderer.material.color = myColor;
+            
+            if(intensity < 0f)
             {
-                Debug.Log(intensity);
+                intensity = 0f;
+                myColor.a = intensity;
+                myRenderer.material.color = myColor;
                 isOn = false;
             }
                 
@@ -37,8 +47,8 @@ public class PillarLightScript : MonoBehaviour
     {
         if (note == this.note)
         {
-            intensity = 1f;
-            myRenderer.material.color = color;
+            myColor.a = intensity = 1.0f;
+            myRenderer.material.color = myColor;
             isOn = false;
         }
     }

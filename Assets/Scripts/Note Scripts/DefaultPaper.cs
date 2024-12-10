@@ -14,6 +14,7 @@ public class DefaultPaper : MonoBehaviour
     private TextMeshProUGUI noteText;
     
     public Button exitNote;
+    public AudioSource audioFX;
 
     private bool isNoteActive = false;
 
@@ -37,13 +38,16 @@ public class DefaultPaper : MonoBehaviour
         }
 
         exitNote.onClick.AddListener(CloseNote);
+        audioFX = GetComponent<AudioSource>();
     }
 
     void OnMouseDown()
     {
         if (!isNoteActive)
         {
+            audioFX.Play();
             OpenNote();
+
         }
     }
 
