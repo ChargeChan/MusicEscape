@@ -25,6 +25,8 @@ public class PianoCanvasScript : MonoBehaviour
     private string correctChords;
     private MPTKEvent[] chordEvents;
     public long chordPlaybackDuration;
+    public Animator animator;
+    public Animator cameraAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -185,8 +187,14 @@ public class PianoCanvasScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         midiFilePlayer.MPTK_Play();
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(3.5f);
         myCanvas.enabled = false;
+        CamManager camManager = FindObjectOfType<CamManager>();
+        camManager.SetActiveCamera(8);
+        animator.SetTrigger("Move");
+        yield return new WaitForSeconds(1f);
+        cameraAnimator.SetTrigger("Move");
+        
     }
     // midiStreamPlayer takes a second to load so a buffer is needed
     private IEnumerator SetInstrument()

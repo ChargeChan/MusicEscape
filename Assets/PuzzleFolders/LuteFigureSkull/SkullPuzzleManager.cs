@@ -133,7 +133,7 @@ public class SkullPuzzleManager : MonoBehaviour
         MPTKEvent PatchChange = new MPTKEvent()
         {
             Command = MPTKCommand.PatchChange,
-            Value = 19, // pipe organ 19
+            Value = 13, // pipe organ 19
             Channel = 3,
             Duration = 100 
         }; // Instrument are defined by channel (from 0 to 15). So at any time, only 16 differents instruments can be used simultaneously.

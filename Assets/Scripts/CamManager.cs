@@ -78,7 +78,7 @@ public class CamManager : MonoBehaviour
             {18,  new CameraNavigation(back: 9)},
             {19,  new CameraNavigation(forward: 0, left: 0)},
             {20,  new CameraNavigation(forward: 0, right: 0)},
-            {21,  new CameraNavigation(left: 24, back: 10)},
+            {21,  new CameraNavigation(left: 24, back: 10, right:26)},
             {22,  new CameraNavigation(back: 21)},
             {23,  new CameraNavigation(back: 6)},
             {24,  new CameraNavigation(back: 21)},
