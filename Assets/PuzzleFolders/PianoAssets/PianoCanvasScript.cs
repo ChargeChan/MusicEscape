@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MidiPlayerTK;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class PianoCanvasScript : MonoBehaviour
 {
@@ -194,7 +195,9 @@ public class PianoCanvasScript : MonoBehaviour
         animator.SetTrigger("Move");
         yield return new WaitForSeconds(1f);
         cameraAnimator.SetTrigger("Move");
-        
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(2);
+
     }
     // midiStreamPlayer takes a second to load so a buffer is needed
     private IEnumerator SetInstrument()
