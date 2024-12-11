@@ -59,7 +59,7 @@ public class CamManager : MonoBehaviour
         {
             { 0, new CameraNavigation(forward: 6, left: 3, right: 2)},
             { 1, new CameraNavigation(back: 3)},
-            { 2, new CameraNavigation(back: 0)},
+            { 2, new CameraNavigation(left: 0, back:2)},
             { 3, new CameraNavigation(back: 0)},
             { 4, new CameraNavigation(back: 3)},
             { 5, new CameraNavigation(back: 0)},
@@ -68,8 +68,8 @@ public class CamManager : MonoBehaviour
             { 8, new CameraNavigation(back: 6)},
             { 9, new CameraNavigation(back: 6)},
             {10,  new CameraNavigation(back: 6)},
-            {11,  new CameraNavigation(left: 2, back: 12)},
-            {12,  new CameraNavigation(back: 11, right: 2)},
+            {11,  new CameraNavigation(left: 0, back: 12)},
+            {12,  new CameraNavigation(back: 11, right: 0)},
             {13,  new CameraNavigation(back: 11)},
             {14,  new CameraNavigation(back: 11)},
             {15,  new CameraNavigation(back: 6, forward: 16, right: 4)},
@@ -78,9 +78,12 @@ public class CamManager : MonoBehaviour
             {18,  new CameraNavigation(back: 9)},
             {19,  new CameraNavigation(forward: 0, left: 0)},
             {20,  new CameraNavigation(forward: 0, right: 0)},
-            {21,  new CameraNavigation(left: 0)},
+            {21,  new CameraNavigation(left: 24, back: 10)},
             {22,  new CameraNavigation(back: 21)},
-            {23,  new CameraNavigation(back: 8)}
+            {23,  new CameraNavigation(back: 6)},
+            {24,  new CameraNavigation(back: 21)},
+            {25,  new CameraNavigation(back: 24)},
+            {26,  new CameraNavigation(back: 21)},
             // Continue defining mappings for each camera...
         };
         //for testing sample scene

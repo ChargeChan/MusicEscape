@@ -7,7 +7,7 @@ public class WheelRingScript : MonoBehaviour
 {
     public int note;
     public float initialRotation;
-    private float rotationSpeed = 0.1f;
+    private float rotationSpeed = 0.5f;
     private bool isRotating;
     // Start is called before the first frame update
     void Start()

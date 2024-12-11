@@ -43,7 +43,7 @@ public class PipeCanvasScript : MonoBehaviour
             //wallRunePuzzle.BroadcastMessage("PlayNote", note);
             pillarPuzzle.BroadcastMessage("PlayNote", note);
         }
-        else if(GameManager.Instance.GetCurrentCameraIndex() == 22)
+        else if(GameManager.Instance.GetCurrentCameraIndex() == 2)
         {
             wheelPuzzle.BroadcastMessage("PlayNote", note);
         }
@@ -61,7 +61,7 @@ public class PipeCanvasScript : MonoBehaviour
             // wallRunePuzzle.BroadcastMessage("TurnOff");
             pillarPuzzle.BroadcastMessage("TurnOff");
         }
-        if (GameManager.Instance.GetCurrentCameraIndex() == 22) 
+        if (GameManager.Instance.GetCurrentCameraIndex() == 2) 
         {
             wheelPuzzle.BroadcastMessage("StopNote");
         }
