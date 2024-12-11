@@ -14,7 +14,7 @@ public class FigurePlacer : NeedItemScript
         {
             Debug.LogError("Animator not assigned to FigurePlacer!");
         }
-        audioSource = GetComponent<AudioSource>();
+        
     }
 
     public override void Open()
